@@ -1,3 +1,4 @@
+/* notas sobre subir imagen con async function
 let imgObjetos = {
 ejemplo1,
 ejemplo2,
@@ -34,7 +35,7 @@ function crearObjetos (tipo, cantidad) {
         activa: true 
     }); 
 }
-}
+}*/
 
 
 
