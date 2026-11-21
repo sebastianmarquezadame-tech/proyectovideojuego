@@ -1,3 +1,5 @@
+let ESCALA_CARPETA = 0.3;
+let ESCALA_ABIERTA = 0.8;
 
 function dibujarLibro (x,y) {
   push ();
@@ -187,7 +189,7 @@ pop ();
 }
 
 
-function dibujarVentana(x, yx, y) {
+function dibujarVentana(x, y) {
   push ();
   translate (x-200, y - 100);
   // CUADRADO
@@ -397,5 +399,148 @@ function dibujarFlorero(x, y) {
   pop ();
 
 }
+
+
+let publicidad1;
+
+async function cargarPublicidad1() {
+  publicidad1 = await loadImage ("IMG_1440.jpg");
+}
+
+function dibujarPublicidad1 (x, y) {
+  push ();
+  translate (x-200, y - 100);
+
+  if (publicidad1) {
+    image (publicidad1, 200, 100, 150, 250);
+
+  // Franja blanca superior de 0.3 cm
+  fill(255);
+  stroke(0);
+  strokeWeight(1);
+  rect(200, 100, 150, 6.5);
+
+   // Borde negro
+  noFill();
+  stroke(0);
+  strokeWeight(2);
+  rect(200, 100, 150, 250);
+
+    // CÍRCULO ROJO
+  fill(255, 0, 0);
+  noStroke();
+  ellipse(208, 103.5, 5.5, 5.5);
+
+  // CÍRCULO AMARILLO
+  fill(255, 237,41);
+  ellipse(220, 103.5, 5.5, 5.5);
+
+  // CÍRCULO VERDE
+  fill(0, 180, 0);
+  ellipse(233, 103.5, 5.5, 5.5);
+    
+  }
+  fill (255);
+  rect (280, 250, 250, 90);
+  stroke (0);
+  strokeWeight (1);
+  rect (329, 270, 28, 15);
+  //TEXTO
+  fill(0, 0, 255);
+  stroke (0);
+  strokeWeight (0);
+  text ("Presiona aquí para desaparecer de este lugar", 280, 280);
+  text ("👆", 335, 295);
+
+  pop ();
+}
+
+function dibujarCarpeta (x, y) {
+push ();
+  translate (x-200, y - 100);
+  scale (ESCALA_CARPETA);
+  translate (-200, -100); 
+
+  // Parte trasera de la carpeta (pestaña)
+  noStroke();
+  fill("#E84393");
+  rect(240, 125, 95, 35, 12, 12, 0, 0);
+
+  // Cuerpo de la carpeta
+  fill("#FF69B4");
+  rect(220, 145, 180, 125, 12);
+
+  // Parte frontal de la carpeta
+  fill("#FF85C1");
+  rect(220, 165, 180, 105, 12);
+
+  // Brillo superior
+  fill("#FFB6D9");
+  rect(225, 170, 170, 8, 5);
+
+   // Nombre de la carpeta
+  fill(255);
+  textSize(16);
+  textAlign(CENTER);
+  text("Archivos", 310, 300);
+
+  pop ();
+}
+
+function dibujarCarpetaabierta (x, y) {
+push ();
+  translate (x, y);
+  scale (ESCALA_ABIERTA);
+  translate (-100, -70);
+
+  // Ventana principal
+  noStroke();
+  fill("#FFF0F7");
+  rect(100, 70, 400, 280, 15);
+
+  // Barra superior
+  fill("#FFB6D9");
+  rect(100, 70, 400, 45, 15, 15, 0, 0);
+
+  // Botones de Mac
+  fill("#FF5F57");
+  circle(125, 92, 12);
+
+  // Barra lateral
+  fill("#FFE0EF");
+  rect(100, 115, 110, 235);
+
+  // Nombre de la carpeta
+  fill("#8A315D");
+  textSize(14);
+  textAlign(CENTER);
+  text("Archivos", 300, 98);
+
+  // Área de contenido
+  fill("#FFFFFF");
+  rect(210, 115, 290, 235, 0, 0, 15, 0);
+
+  // Algunos archivos
+  fill("#FF85C1");
+  rect(245, 155, 45, 45, 8);
+  rect(325, 155, 45, 45, 8);
+  rect(405, 155, 45, 45, 8);
+  rect(245, 230, 45, 45, 8);
+  rect(325, 230, 45, 45, 8);
+  rect(405, 230, 45, 45, 8);
+
+  // Nombres de los archivos
+  fill("#8A315D");
+  textSize(11);
+  text("Libro", 267, 215);
+  text("Poster", 347, 215);
+  text("Ventana", 427, 215);
+  text("Vaso", 267, 291);
+  text("Silla", 347, 291);
+  text("Florero", 427, 291);
+
+  pop ();
+}
+
 
 

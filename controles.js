@@ -1,26 +1,56 @@
-let px = 100;
-let py = 100;
+let px = 0;
+let py = 0;
 let velocidad = 2;
-
-const IZQ = 220;
-const DER = 380;
-const ARR = 105;
-const ABA = 360;
-const BARRA = 19;
-const ESCALA = 0.5;
+let gravedad = 0.5;
+let fuerzaSalto = -10;
+let velocidadY = 0; 
+let enSuelo = true;
+let ESCALA = 0.5;
+let yPiso = 400;
+let suelo = yPiso -360 * ESCALA; // Ajusta la posición del suelo según la escala
 
 
 function moverPersonaje () {
     if (keyIsDown (LEFT_ARROW)) px -= velocidad; 
     if (keyIsDown (RIGHT_ARROW)) px += velocidad;
-    if (keyIsDown (UP_ARROW)) py -= velocidad; 
-    if (keyIsDown (DOWN_ARROW)) py += velocidad; 
 
-    px = constrain(px, -IZQ * ESCALA, width -DER * ESCALA);
-    py = constrain(py, BARRA -ARR * ESCALA , height - ABA * ESCALA);
+    //limitar movimiento horizontal del personaje
+    let bordeIzquierdo = 220 * ESCALA;
+    let bordeDerecho = 380 * ESCALA;
+
+    px = constrain (
+      px, 
+      -bordeIzquierdo,
+      width - bordeDerecho 
+    ); 
+
+    if (!publicidadCerrada && px >= pxInicial + pasoParaPublicidad * paso) {
+      publicidadCerrada = true;
+      cambiarEscena ("publicidad");
+    }
+
+    //gravedad
+      py += velocidadY;
+  velocidadY += gravedad;
+
+  //Suelo
+    if (py >= suelo) {
+        py = suelo;
+        velocidadY = 0;
+        enSuelo = true;
+    }
+
 }
 
 function keyPressed(){
-    if ([LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW].includes(keyCode)) 
-        return false;
+    if (key === ' ' && enSuelo) {
+    velocidadY = fuerzaSalto;
+    enSuelo = false;
+  }
+}
+
+function mouseClick () {
+  if (escena !== "escritorio") return;
+
+
 }
