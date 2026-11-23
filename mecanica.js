@@ -1,4 +1,4 @@
-let escena = "inicio";
+let escena = "escritorio";
 
 let pxInicial = 0;
 

@@ -52,5 +52,5 @@ function keyPressed(){
 function mouseClick () {
   if (escena !== "escritorio") return;
 
-
+  gestionarClickAyuda();
 }

@@ -1,5 +1,8 @@
 async function setup() {
   createCanvas (600, 400);
+
+  setupFondo ();
+
   await cargarPortada ();
 }
 
@@ -8,6 +11,7 @@ function dibujarInicio () {
 }
 
 function draw () {
+  console.log("DRAW FUNCIONANDO");
   
   background (255);
   dibujarFondo ();
@@ -24,4 +28,9 @@ function draw () {
 
   moverPersonaje ();
   dibujarPersonaje (px, py);
+
+}
+
+function mousePressed() {
+  gestionarClickAyuda();
 }
